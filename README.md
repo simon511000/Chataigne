@@ -1,4 +1,4 @@
-# Chataigne
+# Chataigne 
 Artist-friendly Modular Machine for Art and Technology
 Official website : http://benjamin.kuperberg.fr/chataigne
 
