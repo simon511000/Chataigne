@@ -135,7 +135,7 @@ jobs:
       -
         name: Build and push amd64
         uses: docker/build-push-action@v3
-        if: ${{ matrix.arch == 'amd64' }}
+        if: matrix.arch == 'x64'
         with:
           push: true
           file: amd64.Dockerfile
@@ -145,7 +145,7 @@ jobs:
       -
         name: Build and push armhf
         uses: docker/build-push-action@v3
-        if: ${{ matrix.arch == 'armhf' }}
+        if: matrix.arch == 'armhf'
         with:
           push: true
           file: armv7.Dockerfile
