@@ -144,6 +144,7 @@ jobs:
           file: amd64.Dockerfile
           tags: simon511000/chataigne:amd64
           platforms: linux/amd64
+          build-args: github.workspace=${{ github.workspace }}
       
       -
         name: Build and push armhf
