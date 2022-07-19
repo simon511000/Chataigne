@@ -155,7 +155,16 @@ jobs:
             
             if [ "${{ matrix.arch }}" == "arm" ];
             then
-              simon511000/chataigne:amd64
+              simon511000/chataigne:armv7
             fi
-        
+          platforms: |
+            if [ "${{ matrix.arch }}" == "amd64" ];
+            then
+              linux/amd64
+            fi
+            
+            if [ "${{ matrix.arch }}" == "arm" ];
+            then
+              linux/arm/v7
+            fi
       
