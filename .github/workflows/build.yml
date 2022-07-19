@@ -133,38 +133,22 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       -
-        name: Build and push
+        name: Build and push amd64
         uses: docker/build-push-action@v3
+        if: ${{ matrix.arch == 'amd64' }}
         with:
           push: true
-          file: |
-            if [ "${{ matrix.arch }}" == "amd64" ];
-            then
-              amd64.Dockerfile
-            fi
-            
-            if [ "${{ matrix.arch }}" == "arm" ];
-            then
-              armv7.Dockerfile
-            fi
-          tags: |
-            if [ "${{ matrix.arch }}" == "amd64" ];
-            then
-              simon511000/chataigne:amd64
-            fi
-            
-            if [ "${{ matrix.arch }}" == "arm" ];
-            then
-              simon511000/chataigne:armv7
-            fi
-          platforms: |
-            if [ "${{ matrix.arch }}" == "amd64" ];
-            then
-              linux/amd64
-            fi
-            
-            if [ "${{ matrix.arch }}" == "arm" ];
-            then
-              linux/arm/v7
-            fi
+          file: amd64.Dockerfile
+          tags: simon511000/chataigne:amd64
+          platforms: linux/amd64
+      
+      -
+        name: Build and push armhf
+        uses: docker/build-push-action@v3
+        if: ${{ matrix.arch == 'armhf' }}
+        with:
+          push: true
+          file: armv7.Dockerfile
+          tags: simon511000/chataigne:armv7
+          platforms: linux/arm/v7
       
