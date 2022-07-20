@@ -17,10 +17,10 @@ jobs:
           buildFolder: "LinuxMakefile"
           buildConfig: "Release"
           
-        - arch: armhf
-          packageArch: armhf
-          buildFolder: "Raspberry"
-          buildConfig: "Release"
+        # - arch: armhf
+        #   packageArch: armhf
+        #   buildFolder: "Raspberry"
+        #   buildConfig: "Release"
 
         # - arch: aarch64
         #   packageArch: arm64
@@ -141,10 +141,9 @@ jobs:
         if: matrix.arch == 'x64'
         with:
           push: true
-          file: ${{ github.workspace }}/amd64.Dockerfile
+          file: ${{ github.workspace }}/Builds/${{ matrix.buildFolder }}/Dockerfile
           tags: simon511000/chataigne:amd64
           platforms: linux/amd64
-          build-args: github.workspace=${{ github.workspace }}
       
       -
         name: Build and push armhf
