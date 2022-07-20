@@ -34,6 +34,9 @@ jobs:
       fail-fast: false
 
     steps:
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
+
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
@@ -148,7 +151,7 @@ jobs:
             IMAGE_NAME=${{ env.ImageName }}
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.GITHUB_REF_NAME }}-amd64
+          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ steps.tagName.outputs.tag }}-amd64
           platforms: linux/amd64
           
       
@@ -163,5 +166,5 @@ jobs:
             IMAGE_NAME=${{ env.ImageName }}4
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${GITHUB_REF_NAME}-armv7
+          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ steps.tagName.outputs.tag }}-armv7
           platforms: linux/arm/v7
