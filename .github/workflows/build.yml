@@ -144,7 +144,7 @@ jobs:
           push: true
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: simon511000/${{ env.ProjectName }}:${{ env.PackagesVersion }}-amd64
+          tags: ghcr.io/simon511000/${{ env.ProjectName }}/${{ env.ProjectName }}:${{ env.PackagesVersion }}-amd64
           platforms: linux/amd64
       
       -
@@ -155,6 +155,6 @@ jobs:
           push: true
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: simon511000/${{ env.ProjectName }}:${{ env.PackagesVersion }}-armv7
+          tags: ghcr.io/simon511000/${{ env.ProjectName }}/${{ env.ProjectName }}:${{ env.PackagesVersion }}-armv7
           platforms: linux/arm/v7
       
