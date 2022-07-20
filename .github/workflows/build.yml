@@ -163,5 +163,5 @@ jobs:
             IMAGE_NAME=${{ env.ImageName }}4
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.GITHUB_REF_NAME }}-armv7
+          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${GITHUB_REF_NAME}-armv7
           platforms: linux/arm/v7
