@@ -141,7 +141,7 @@ jobs:
         if: matrix.arch == 'x64'
         with:
           push: true
-          file: amd64.Dockerfile
+          file: ${{ github.workspace }}/amd64.Dockerfile
           tags: simon511000/chataigne:amd64
           platforms: linux/amd64
           build-args: github.workspace=${{ github.workspace }}
