@@ -139,9 +139,10 @@ jobs:
         name: Build and push amd64
         uses: docker/build-push-action@v3
         if: matrix.arch == 'x64'
+        working-directory: ./Builds/${{ matrix.buildFolder }}
         with:
           push: true
-          file: ${{ github.workspace }}/Builds/${{ matrix.buildFolder }}/Dockerfile
+          file: Dockerfile
           tags: simon511000/chataigne:amd64
           platforms: linux/amd64
       
