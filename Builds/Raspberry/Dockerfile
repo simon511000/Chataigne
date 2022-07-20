@@ -2,17 +2,16 @@ FROM debian
 
 RUN DEBIAN_FRONTEND=noninteractive apt update -y && apt install -y libasound2 libfreetype6 libcurl3-gnutls libgl1 libbluetooth3 libavahi-common3 libavahi-client3 libbluetooth-dev libx11-dev xvfb x11vnc fluxbox libatomic1
 
-ARG github.workspace=.
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 
 RUN addgroup --gid $GROUP_ID user
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
 
-COPY $github.workspace/Builds/Raspberry/Chataigne.AppDir/usr/lib/* /usr/lib/
-COPY $github.workspace/Builds/Raspberry/Chataigne.AppDir/usr/bin/server.key /usr/bin/
-COPY $github.workspace/Builds/Raspberry/Chataigne.AppDir/usr/bin/server.crt /usr/bin/
-COPY $github.workspace/Builds/Raspberry/Chataigne.AppDir/usr/bin/Chataigne /home/user
+COPY ./Chataigne.AppDir/usr/lib/* /usr/lib/
+COPY ./Chataigne.AppDir/usr/bin/server.key /usr/bin/
+COPY ./Chataigne.AppDir/usr/bin/server.crt /usr/bin/
+COPY ./build/Chataigne /home/user/
 
 RUN chown -R user:user /home/user
 USER user
