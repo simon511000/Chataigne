@@ -142,7 +142,7 @@ jobs:
         with:
           push: true
           context: ./Builds/${{ matrix.buildFolder }}
-          file: Dockerfile
+          file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
           tags: simon511000/chataigne:amd64
           platforms: linux/amd64
       
