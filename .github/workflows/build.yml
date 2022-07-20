@@ -168,7 +168,7 @@ jobs:
           platforms: linux/arm/v7
 
   manifest:
-    runs-on: ubuntu-last
+    runs-on: ubuntu-18.04
     needs: ['linux']
     steps:
       - name: Create and push manifest images
