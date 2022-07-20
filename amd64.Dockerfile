@@ -12,7 +12,7 @@ RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
 COPY $github.workspace/Builds/LinuxMakefile/Chataigne.AppDir/usr/lib/* /usr/lib/
 COPY $github.workspace/Builds/LinuxMakefile/Chataigne.AppDir/usr/bin/server.key /usr/bin/
 COPY $github.workspace/Builds/LinuxMakefile/Chataigne.AppDir/usr/bin/server.crt /usr/bin/
-COPY $github.workspace/Builds/LinuxMakefile/build/Chataigne /home/user
+COPY $github.workspace/Builds/LinuxMakefile/build/Chataigne /home/user/
 
 RUN chown -R user:user /home/user
 USER user
