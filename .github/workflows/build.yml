@@ -7,7 +7,6 @@ env:
   ProjectName: chataigne-docker
   RepositoryOwner: simon511000
   ImageName: chataigne
-  PackagesVersion: ${GITHUB_REF##*/}
 
 jobs:
   linux:
@@ -149,7 +148,7 @@ jobs:
             IMAGE_NAME=${{ env.ImageName }}
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.PackagesVersion }}-amd64
+          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${GITHUB_REF##*/}-amd64
           platforms: linux/amd64
           
       
@@ -164,5 +163,5 @@ jobs:
             IMAGE_NAME=${{ env.ImageName }}4
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.PackagesVersion }}-armv7
+          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${GITHUB_REF##*/}-armv7
           platforms: linux/arm/v7
