@@ -145,11 +145,11 @@ jobs:
         with:
           push: true
           build-args: |
-            REPOSITORY_OWNER={{ env.RepositoryOwner }}
-            IMAGE_NAME={{ env.ImageName }}
+            REPOSITORY_OWNER=${{ env.RepositoryOwner }}
+            IMAGE_NAME=${{ env.ImageName }}
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: ghcr.io/{{ env.RepositoryOwner }}/{{ env.ImageName }}:${{ env.PackagesVersion }}-amd64
+          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.PackagesVersion }}-amd64
           platforms: linux/amd64
           
       
@@ -160,10 +160,10 @@ jobs:
         with:
           push: true
           build-args: |
-            REPOSITORY_OWNER={{ env.RepositoryOwner }}
-            IMAGE_NAME={{ env.ImageName }}4
+            REPOSITORY_OWNER=${{ env.RepositoryOwner }}
+            IMAGE_NAME=${{ env.ImageName }}4
           context: ./Builds/${{ matrix.buildFolder }}
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
-          tags: ghcr.io/{{ env.RepositoryOwner }}/{{ env.ImageName }}:${{ env.PackagesVersion }}-armv7
+          tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.PackagesVersion }}-armv7
           platforms: linux/arm/v7
       
