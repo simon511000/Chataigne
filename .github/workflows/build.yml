@@ -7,7 +7,7 @@ env:
   ProjectName: chataigne-docker
   RepositoryOwner: simon511000
   ImageName: chataigne
-  PackagesVersion: 1.9.7
+  PackagesVersion: ${GITHUB_REF##*/}
 
 jobs:
   linux:
@@ -143,7 +143,7 @@ jobs:
         uses: docker/build-push-action@v3
         if: matrix.arch == 'x64'
         with:
-          push: false
+          push: true
           build-args: |
             REPOSITORY_OWNER=${{ env.RepositoryOwner }}
             IMAGE_NAME=${{ env.ImageName }}
@@ -158,7 +158,7 @@ jobs:
         uses: docker/build-push-action@v3
         if: matrix.arch == 'armhf'
         with:
-          push: false
+          push: true
           build-args: |
             REPOSITORY_OWNER=${{ env.RepositoryOwner }}
             IMAGE_NAME=${{ env.ImageName }}4
@@ -166,15 +166,3 @@ jobs:
           file: ./Builds/${{ matrix.buildFolder }}/Dockerfile
           tags: ghcr.io/${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.PackagesVersion }}-armv7
           platforms: linux/arm/v7
-
-  manifest:
-    runs-on: ubuntu-18.04
-    needs: ['linux']
-    steps:
-      - name: Create and push manifest images
-        uses: Noelware/docker-manifest-action@master # or use whatever version.
-        with:
-          base-image: ${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.PackagesVersion }}
-          extra-images: ${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.PackagesVersion }}-amd64,${{ env.RepositoryOwner }}/${{ env.ImageName }}:${{ env.PackagesVersion }}-armv7
-
-          push: true
